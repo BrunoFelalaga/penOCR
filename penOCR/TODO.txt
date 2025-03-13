@@ -1,0 +1,30 @@
+
+Make sure set photo permissions in Info.plist
+Clicking transcribe image should show progress when transcribing
+Fix buttons
+Add speech to saved lists
+Add dark/light modes
+Splash screen/on boarding
+
+transitioning views is too painful to eeyes
+
+
+
+settings bundle
+background colors/colorschemes
+
+onboarding/splash screen
+light and dark modes
+tab view persistence ------
+photo reeviewe right shift -------------
+anothre notes app
+ratake not back
+floating action buttons/buttons use icon with text, roundeed corners -----
+consistent button styles/schemes
+
+flash photography
+adjust brightness
+zoom
+focus
+cropping in review
+flip to seelfie
