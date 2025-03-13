@@ -65,6 +65,7 @@ struct PhotoReviewView: View {
                     }
                 }
                 
+            
                 if isTranscribing {
                     VStack {
                         ProgressView("Preparing transcription...")

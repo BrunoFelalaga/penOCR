@@ -81,6 +81,7 @@ The app implements a thoughtful Core Data architecture with entities for:
 - Organize transition betweeen views more efficiently and smoothly
 - Include options for user to control styles and themes
 - Improve cropping, zooming  and focus features
+- Add selfie camera
 
 - VERY IMPORTANTLY: 
     - Use a higher accuracy transcriber than Vision. 

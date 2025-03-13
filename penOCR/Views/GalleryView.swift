@@ -28,6 +28,7 @@ struct GalleryView: View, PhotoDeletable {
         GridItem(.adaptive(minimum: 100))
     ]
     
+    
     var body: some View {
         ZStack {
             if showingPhotoReview, let cgImage = selectedImageCG ?? libraryImageCG {

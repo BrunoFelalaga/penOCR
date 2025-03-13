@@ -28,6 +28,7 @@ struct ContentView: View {
         _autoTranscribe = State(initialValue: autoTranscribe)
     }
 
+
     
     var body: some View {
         NavigationView {

@@ -28,6 +28,7 @@ struct SavedTranscriptionsView: View {
         }
     }
     
+    
     var body: some View {
         NavigationView {
             if transcriptions.isEmpty {

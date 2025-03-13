@@ -15,6 +15,7 @@ class FrameHandler: NSObject, ObservableObject {
     @Published var zoomFactor: CGFloat = 1.0
     private var videoDevice: AVCaptureDevice?
     
+    
     override init() {
         super.init()
         checkPermission()

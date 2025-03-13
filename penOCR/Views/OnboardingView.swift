@@ -36,6 +36,7 @@ struct OnboardingView: View {
     }
 }
 
+
 struct OnboardingPage: View {
     let systemName: String
     let title: String

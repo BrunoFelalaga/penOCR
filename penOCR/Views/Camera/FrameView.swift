@@ -14,6 +14,7 @@ struct FrameView: View {
         self.onFocusTap = onFocusTap
     }
     
+    
     var body: some View {
         GeometryReader { geometry in
             if let image = image {

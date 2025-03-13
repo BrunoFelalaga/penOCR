@@ -6,7 +6,6 @@
 //
 import SwiftUI
 
-
 struct FloatingActionButton: View {
     var icon: String
     var label: String

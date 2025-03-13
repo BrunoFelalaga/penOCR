@@ -14,6 +14,7 @@ struct PhotoDetailView: View, PhotoDeletable {
         self.onBack = onBack
     }
     
+    
     var body: some View {
         ZStack {
             Color.black

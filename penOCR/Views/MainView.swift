@@ -65,7 +65,9 @@ struct MainView: View {
     sampleTranscription2.createdAt = Date()
     
     try? context.save()
+
     
     return MainView()
         .environment(\.managedObjectContext, context)
 }
+
