@@ -2,22 +2,27 @@ import SwiftUI
 import CoreData
 import UIKit
 
+
+/// PhotoReviewView: for captured images with options for cropping, transcribing, and saving
+/// Provides navigation to transcription view and image editing capabilities
 struct PhotoReviewView: View {
-    var capturedImage: CGImage
-    var onSave: () -> Void
-    var onBack: () -> Void
+    var capturedImage: CGImage      // The image captured by camera to be displayed
+    var onSave: () -> Void          // Callback executed when image is saved
+    var onBack: () -> Void          // Callback executed when returning to camera
+       
     
     @State private var navigateToContentView = false
     @State private var isTranscribing = false
     @State private var isCropping = false
     @State private var croppedImage: UIImage?
     
-    @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.managedObjectContext) private var viewContext  // CoreData context for saving images
     
     var body: some View {
+        // Main navigation container
         NavigationView {
             ZStack {
-                // Display the image
+                // Display cropped image if available, otherwise show original captured image
                 if let croppedImage = croppedImage, let cgImage = croppedImage.cgImage {
                     Image(cgImage, scale: 1.0, orientation: .right, label: Text("Cropped Photo"))
                         .resizable()
@@ -32,24 +37,32 @@ struct PhotoReviewView: View {
                         .ignoresSafeArea(.all)
                 }
                 
-                // Bottom buttons
+                // Bottom action buttons container
                 VStack {
                     Spacer()
                     
+                    // Row of action buttons for image manipulation and navigation
                     HStack(spacing: 15) {
                         Spacer()
+                        
+                        // Button: Returns to camera view discarding current image
                         FloatingActionButton(icon: "arrow.uturn.backward", label: "Retake", color: .black.opacity(0.7)) {
                             onBack()
                         }
+                        
                         Spacer()
                         
+                        // Button: Opens image cropping interface
                         FloatingActionButton(icon: "crop", label: "Crop", color: .black.opacity(0.7)) {
                             showImageCropper()
                         }
+                        
                         Spacer()
                         
+                        // Button: Initiates OCR text recognition process
                         FloatingActionButton(icon: "text.bubble", label: "Transcribe", color: .black.opacity(0.7)) {
                             isTranscribing = true
+                            // Short delay to show processing indicator before navigation
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                                 navigateToContentView = true
                                 isTranscribing = false
@@ -58,44 +71,50 @@ struct PhotoReviewView: View {
                         
                         Spacer()
                         
+                        
+                        // Button: Saves image to CoreData storage
                         FloatingActionButton(icon: "square.and.arrow.down", label: "Save", color: .black.opacity(0.7)) {
                             savePhoto()
                             onSave()
                         }
+                        
                         Spacer()
                     }
                 }
                 
-            
+                
+                // Loading overlay during transcription processing
                 if isTranscribing {
                     VStack {
-                        ProgressView("Preparing transcription...")
+                        ProgressView("Preparing transcription...") // Loading indicator with status message
                             .padding()
                             .background(Color.black.opacity(0.7))
                             .foregroundColor(.white)
                             .cornerRadius(10)
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(Color.black.opacity(0.3))
-                    .zIndex(300)
+                    .background(Color.black.opacity(0.3)) // Semi-transparent background overlay
+                    .zIndex(300) // Position above other UI elements
                 }
                 
+                
+                // Hidden navigation link to ContentView for transcription
                 NavigationLink(
                     destination: ContentView(
-                        inputImage: croppedImage ?? UIImage(cgImage: capturedImage),
-                        autoTranscribe: true
+                        inputImage: croppedImage ?? UIImage(cgImage: capturedImage), // Use cropped image if available, otherwise original
+                        autoTranscribe: true  // Automatically start transcription process
                     ),
                     isActive: $navigateToContentView
                 ) {
-                    EmptyView()
+                    EmptyView() // Empty view since this is programmatically triggered
                 }
             }
-            .navigationViewStyle(.stack)
-            .toolbar(.hidden, for: .tabBar)
-            .navigationBarBackButtonHidden(true)
-            .sheet(isPresented: $isCropping) {
+            .navigationViewStyle(.stack)  // Use stack navigation style
+            .toolbar(.hidden, for: .tabBar) // Hide tab bar during review
+            .navigationBarBackButtonHidden(true) // Custom back handling
+            .sheet(isPresented: $isCropping) { // Cropper presented in sheet style
                 ImageCropperView(
-                    image: UIImage(cgImage: capturedImage),
+                    image: UIImage(cgImage: capturedImage),  // Present cropper with original image
                     onCrop: { croppedImg in
                         croppedImage = croppedImg
                     }
@@ -104,6 +123,8 @@ struct PhotoReviewView: View {
         }
     }
     
+    
+    // function to set the var for isCropping
     private func showImageCropper() {
         isCropping = true
     }
@@ -112,18 +133,20 @@ struct PhotoReviewView: View {
         // Use cropped image if available, otherwise use original
         let imageToSave = croppedImage?.cgImage ?? capturedImage
         
-        // Convert CGImage to Data
+        // Convert CGImage to Data for storage
         let uiImage = UIImage(cgImage: imageToSave)
         guard let imageData = uiImage.jpegData(compressionQuality: 0.8) else {
             print("Could not convert image to data")
             return
         }
         
+        // Create and configure new ImageData entity
         let newPhoto = ImageData(context: viewContext)
         newPhoto.id = UUID()
         newPhoto.imageData = imageData
         newPhoto.createdAt = Date()
         
+        // Save to CoreData and refresh context
         do {
             try viewContext.save()
             print("Photo saved successfully")
@@ -134,24 +157,34 @@ struct PhotoReviewView: View {
     }
 }
 
+
+/// ImageCropperView: SwiftUI wrapper for the custom image cropping controller
+/// Handles data passing between SwiftUI and UIKit
 struct ImageCropperView: UIViewControllerRepresentable {
     let image: UIImage
-    let onCrop: (UIImage) -> Void
-    @Environment(\.presentationMode) var presentationMode
+    let onCrop: (UIImage) -> Void // Callback with cropped image result
+    @Environment(\.presentationMode) var presentationMode // For dismissing the sheet
     
+    
+    // Creates the UIKit cropping controller with proper configuration
     func makeUIViewController(context: Context) -> UIImageCropperViewController {
         let controller = UIImageCropperViewController()
-        controller.sourceImage = image
-        controller.delegate = context.coordinator
+        controller.sourceImage = image // Pass source image to controller
+        controller.delegate = context.coordinator // Set up communication channel
         return controller
     }
     
+    // No implementation needed since view doesn't change after creation
     func updateUIViewController(_ uiViewController: UIImageCropperViewController, context: Context) {}
     
+    
+    // Creates coordinator to handle delegate callbacks from UIKit
     func makeCoordinator() -> Coordinator {
         Coordinator(parent: self)
     }
     
+    
+    /// Inneer class to handle communication between UIKit cropper and SwiftUI view
     class Coordinator: NSObject, UIImageCropperViewControllerDelegate {
         let parent: ImageCropperView
         
@@ -159,10 +192,12 @@ struct ImageCropperView: UIViewControllerRepresentable {
             self.parent = parent
         }
         
+        // Called when user cancels cropping operation
         func imageCropperDidCancel(_ cropper: UIImageCropperViewController) {
             parent.presentationMode.wrappedValue.dismiss()
         }
         
+        // Called when user completes cropping operation
         func imageCropper(_ cropper: UIImageCropperViewController, didFinishCroppingImage croppedImage: UIImage) {
             parent.onCrop(croppedImage)
             parent.presentationMode.wrappedValue.dismiss()
@@ -170,15 +205,17 @@ struct ImageCropperView: UIViewControllerRepresentable {
     }
 }
 
-// Custom image cropper view controller
+
+// Custom image cropper controller that handles image cropping operations
 class UIImageCropperViewController: UIViewController {
     var sourceImage: UIImage!
-    var delegate: UIImageCropperViewControllerDelegate?
+    var delegate: UIImageCropperViewControllerDelegate?   // Delegate to handle crop events
     
-    private var imageView: UIImageView!
-    private var cropOverlayView: UIView!
-    private var cropRect: CGRect = .zero
+    private var imageView: UIImageView! // Displays the image being cropped
+    private var cropOverlayView: UIView!  // Visual indicator of crop area
+    private var cropRect: CGRect = .zero // Current crop rectangle dimensions
     
+    // Initialize view components and setup UI elements
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
@@ -188,6 +225,8 @@ class UIImageCropperViewController: UIViewController {
         setupButtons()
     }
     
+    
+    // Sets up the image display with proper orientation and constraints
     private func setupImageView() {
         let imageWithOrientation = UIImage(cgImage: sourceImage.cgImage!, scale: sourceImage.scale, orientation: .right)
         imageView = UIImageView(image: imageWithOrientation)
@@ -195,6 +234,7 @@ class UIImageCropperViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(imageView)
         
+        // Center image view and make it fill the view
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
@@ -203,6 +243,7 @@ class UIImageCropperViewController: UIViewController {
         ])
     }
     
+    // Creates and configures the crop boundary overlay with gestures
     private func setupCropOverlay() {
         cropOverlayView = UIView()
         cropOverlayView.layer.borderWidth = 2
@@ -220,6 +261,7 @@ class UIImageCropperViewController: UIViewController {
         view.addGestureRecognizer(pinchGesture)
     }
     
+    // Initializes the crop rectangle after view layout is complete
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -239,6 +281,7 @@ class UIImageCropperViewController: UIViewController {
         }
     }
     
+    // Handles pan gestures to move the crop rectangle
     @objc func handlePan(_ gesture: UIPanGestureRecognizer) {
         let translation = gesture.translation(in: view)
         
@@ -292,6 +335,7 @@ class UIImageCropperViewController: UIViewController {
         }
     }
     
+    // Creates action buttons for crop operations
     private func setupButtons() {
         let buttonStack = UIStackView()
         buttonStack.axis = .horizontal
@@ -300,6 +344,7 @@ class UIImageCropperViewController: UIViewController {
         buttonStack.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(buttonStack)
         
+        // Position buttons at bottom of screen with padding
         NSLayoutConstraint.activate([
             buttonStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             buttonStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
@@ -323,10 +368,12 @@ class UIImageCropperViewController: UIViewController {
         cropButton.layer.cornerRadius = 8
         cropButton.addTarget(self, action: #selector(cropTapped), for: .touchUpInside)
         
+        // Add buttons to the stack
         buttonStack.addArrangedSubview(cancelButton)
         buttonStack.addArrangedSubview(cropButton)
     }
     
+    // Notifies delegate when user cancels the crop operation
     @objc func cancelTapped() {
         delegate?.imageCropperDidCancel(self)
     }

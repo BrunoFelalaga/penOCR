@@ -7,14 +7,17 @@
 
 import SwiftUI
 
+/// FloatingActionButton:  Reusable floating action button component with icon and label
+/// Provides consistent styling for app actions with customizable colors
 struct FloatingActionButton: View {
     var icon: String
     var label: String
     var color: Color
-    var action: () -> Void
+    var action: () -> Void     // Closure executed when button is tapped
     
     var body: some View {
         VStack {
+            // Main button with icon, background and shadow
             Button(action: action) {
                 Image(systemName: icon)
                     .font(.system(size: 22))
@@ -24,6 +27,8 @@ struct FloatingActionButton: View {
                     .cornerRadius(28)
                     .shadow(radius: 5)
             }
+            
+            // Caption label below the button
             Text(label)
                 .font(.caption)
                 .foregroundColor(.primary)

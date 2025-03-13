@@ -8,8 +8,14 @@
 
 import SwiftUI
 
+
+// GoogleKeepService: Service for exporting transcriptions to Google Keep
+// Handles clipboard and app/web redirection
 class GoogleKeepService {
+    
+    // Exports text content to Google Keep with title with multiple paths for Keep integration
     static func saveToGoogleKeep(title: String, text: String) {
+        
         // Copy to clipboard
         let combinedText = "\(title)\n\n\(text)"
         UIPasteboard.general.string = combinedText
@@ -22,7 +28,7 @@ class GoogleKeepService {
         )
         
         // Attempts at saving to google-keep
-        // 1: Try Google Keep app
+        // 1: Try Google Keep app via URL scheme
         alert.addAction(UIAlertAction(title: "Open Keep App", style: .default) { _ in
             if let keepAppURL = URL(string: "gkeep://") {
                 UIApplication.shared.open(keepAppURL, options: [:]) { success in
@@ -40,16 +46,19 @@ class GoogleKeepService {
             openKeepWebsite()
         })
         
-        // Option 3: Just copy (already done)
         
+        // Cancel option dismisses dialog without further action
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         
+        // Find and use app's root view controller to present the alert/
         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
            let rootViewController = windowScene.windows.first?.rootViewController {
             rootViewController.present(alert, animated: true)
         }
     }
     
+    
+    // Shows fallback alert when Keep app isn't installed with web version as alternative
     private static func showKeepWebFallbackAlert() {
         let fallbackAlert = UIAlertController(
             title: "Keep App Not Found",
@@ -57,18 +66,23 @@ class GoogleKeepService {
             preferredStyle: .alert
         )
         
+        // Option to open web version
         fallbackAlert.addAction(UIAlertAction(title: "Open in Browser", style: .default) { _ in
             openKeepWebsite()
         })
         
+        
+        // Cancel option dismisses dialog
         fallbackAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         
+        // Present fallback alert on root view controller
         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
            let rootViewController = windowScene.windows.first?.rootViewController {
             rootViewController.present(fallbackAlert, animated: true)
         }
     }
 
+    // Opens Google Keep website in default browser. Tries short URL first, then falls back to main Keep URL
     private static func openKeepWebsite() {
         // Try direct note creation URL first
         if let keepNewURL = URL(string: "https://keep.new") {

@@ -7,9 +7,11 @@
 import SwiftUI
 import Vision
 
+// TranscriptionService: Text recognition service that processes images using Vision framework
+// Provides observable published properties for UI state management
 class TranscriptionService: ObservableObject {
-    @Published var recognizedText = ""
-    @Published var isRecognizing = false
+    @Published var recognizedText = ""    // Stores text extracted from images
+    @Published var isRecognizing = false  // Tracks active recognition status
     
     // Function to recognize text from the given UIImage using Vision framework
     func recognizeText(from image: UIImage) {
@@ -65,6 +67,7 @@ class TranscriptionService: ObservableObject {
     }
 
     
+    // Resets the recognizedtext and associated boolean 
     func reset() {
         recognizedText = ""
         isRecognizing = false

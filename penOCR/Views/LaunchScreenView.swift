@@ -8,11 +8,16 @@
 
 import SwiftUI
 
+/// Launch screen displayed when the app starts
+/// Shows app icon and app name with purple background
 struct LaunchScreenView: View {
     var body: some View {
         ZStack {
+            
+            // Background color
             Color.purple
                 .ignoresSafeArea()
+            
             VStack(spacing: 20) {
                 Spacer()
                 
@@ -23,6 +28,7 @@ struct LaunchScreenView: View {
                     .frame(width: 100, height: 100)
                     .foregroundColor(.blue)
                 
+                // App name
                 Text("penOCR")
                     .font(.largeTitle)
                     .fontWeight(.bold)

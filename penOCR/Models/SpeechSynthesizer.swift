@@ -3,12 +3,17 @@
 import SwiftUI
 import AVFoundation
 
-// Keep your existing SpeechSynthesizer class
+// SpeechSynthesizer: Manages text-to-speech functionality with playback controls
+// Provides UI components for speech integration in views
 class SpeechSynthesizer: ObservableObject {
-    private let synthesizer = AVSpeechSynthesizer()
-    @Published var isSpeaking = false
+    private let synthesizer = AVSpeechSynthesizer() // Core speech synthesis engine
+    @Published var isSpeaking = false // Tracks current speaking state
     
+    
+    // Converts text to speech with default audio settings
     func speak(text: String) {
+        
+        // Configure audio session for playback
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
             try AVAudioSession.sharedInstance().setActive(true)
@@ -16,7 +21,7 @@ class SpeechSynthesizer: ObservableObject {
             print("Audio session setup failed: \(error)")
         }
         
-        // Stop any ongoing speech
+        // Stop any ongoing speech before starting new utterance
         if synthesizer.isSpeaking {
             synthesizer.stopSpeaking(at: .immediate)
         }
@@ -37,6 +42,8 @@ class SpeechSynthesizer: ObservableObject {
         )
     }
     
+    
+    // Immediately stops any ongoing speech playback
     func stopSpeaking() {
         if synthesizer.isSpeaking {
             synthesizer.stopSpeaking(at: .immediate)
@@ -44,6 +51,7 @@ class SpeechSynthesizer: ObservableObject {
         }
     }
     
+    // Toggles between starting and stopping speech based on current state
     func toggleSpeech(text: String) {
             if isSpeaking {
                 stopSpeaking()
@@ -52,17 +60,23 @@ class SpeechSynthesizer: ObservableObject {
             }
         }
     
+    // Callback for speech completion notification
     @objc func speechDidFinish() {
         isSpeaking = false
     }
     
+    
+    // Returns a styled button that toggles speech playback with visual state indicators
     func speakButton(text: String) -> some View {
+            // Toggle speech button
             Button(action: {
                 self.toggleSpeech(text: text)
             }) {
+                
+                // Toggle speech Button UI with image and text
                 HStack {
-                    Image(systemName: isSpeaking ? "speaker.slash" : "speaker.wave.2")
-                    Text(isSpeaking ? "Stop" : "Speak")
+                    Image(systemName: isSpeaking ? "speaker.slash" : "speaker.wave.2") // Toggle icon based on speech state
+                    Text(isSpeaking ? "Stop" : "Speak") // Toggle label based on speech state
                 }
                 .padding()
                 .background(Color.purple)
@@ -72,21 +86,28 @@ class SpeechSynthesizer: ObservableObject {
         }
 }
 
+
+
+// TranscriptionView: Displays transcribed text with integrated text-to-speech functionality
 struct TranscriptionView: View {
     @State private var transcribedText: String = "Your transcribed text will appear here."
     @StateObject private var speechSynthesizer = SpeechSynthesizer()
 
     var body: some View {
         VStack {
+            
+            // Text display area with border
             Text(transcribedText)
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .border(Color.gray, width: 1)
             
-            // Simple speech button
+            // Speech playback toggle button
             Button(action: {
                 speechSynthesizer.toggleSpeech(text: transcribedText)
             }) {
+                
+                // Speech playback Button UI with image and text
                 HStack {
 
                     Image(systemName: speechSynthesizer.isSpeaking ? "speaker.slash" : "speaker.wave.2")
