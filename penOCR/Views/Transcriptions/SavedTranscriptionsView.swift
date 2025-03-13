@@ -17,6 +17,7 @@ struct SavedTranscriptionsView: View {
     @State private var titleSortAscending = false
 
     
+    
     var filteredTranscriptions: [Transcription] {
         if searchText.isEmpty {
             return Array(transcriptions)

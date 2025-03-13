@@ -55,6 +55,7 @@ struct PhotoReviewView: View {
                                 isTranscribing = false
                             }
                         }
+                        
                         Spacer()
                         
                         FloatingActionButton(icon: "square.and.arrow.down", label: "Save", color: .black.opacity(0.7)) {

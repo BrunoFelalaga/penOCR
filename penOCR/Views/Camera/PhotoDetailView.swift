@@ -15,6 +15,7 @@ struct PhotoDetailView: View, PhotoDeletable {
     }
     
     
+    
     var body: some View {
         ZStack {
             Color.black

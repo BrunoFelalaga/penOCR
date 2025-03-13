@@ -3,6 +3,7 @@ import SwiftUI
 import CoreData
 import PhotosUI
 
+
 struct GalleryView: View, PhotoDeletable {
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(

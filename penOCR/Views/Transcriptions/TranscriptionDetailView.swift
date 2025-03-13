@@ -434,6 +434,7 @@ struct QuickLookPreview: UIViewControllerRepresentable {
 
 
 
+
 extension Transcription {
     @objc var attachmentArray: [Attachment] {
         let set = attachments as? Set<Attachment> ?? []

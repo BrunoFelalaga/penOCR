@@ -11,7 +11,6 @@ struct CameraView: View {
         self._selectedTab = selectedTab
     }
     
-    
     @Environment(\.managedObjectContext) private var viewContext
     
     var body: some View {

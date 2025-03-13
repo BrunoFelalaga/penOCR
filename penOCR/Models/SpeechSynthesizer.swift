@@ -3,7 +3,6 @@
 import SwiftUI
 import AVFoundation
 
-
 // Keep your existing SpeechSynthesizer class
 class SpeechSynthesizer: ObservableObject {
     private let synthesizer = AVSpeechSynthesizer()

@@ -4,6 +4,7 @@ import PhotosUI
 
 struct ContentView: View {
     
+    
     @StateObject private var transcriptionService = TranscriptionService()
     
     private var recognizedText: String { transcriptionService.recognizedText }

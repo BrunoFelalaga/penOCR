@@ -16,6 +16,7 @@ class FrameHandler: NSObject, ObservableObject {
     private var videoDevice: AVCaptureDevice?
     
     
+    
     override init() {
         super.init()
         checkPermission()
