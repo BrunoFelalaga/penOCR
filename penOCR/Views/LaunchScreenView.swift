@@ -32,10 +32,11 @@ struct LaunchScreenView: View {
                 Text("penOCR")
                     .font(.largeTitle)
                     .fontWeight(.bold)
-                    .foregroundColor(.white) 
+                    .foregroundColor(.white)
                 
                 Spacer()
                 
+                // Developer name
                 Text("Bruno Felalaga")
                     .font(.headline)
                     .foregroundColor(.white.opacity(0.9))
