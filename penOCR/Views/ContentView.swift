@@ -34,7 +34,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                if let image = inputImage {
+                if let image = inputImage { // captured image being transcribed
                     if let cgImage = image.cgImage {
                         Image(cgImage, scale: 1.0, orientation: .right, label: Text("Captured Photo"))
                             .resizable()
@@ -42,7 +42,7 @@ struct ContentView: View {
                             .padding()
                     }
                 }
-                else {
+                else { // wheere there is no image in contentview display this
                     Text("No Image loaded")
                         .padding()
                     
@@ -56,6 +56,7 @@ struct ContentView: View {
                         .padding()
                     
                     Button(action: {
+                        print("camera button pressed in content view")
                         isShowingCameraView = true
                     }) {
                         Image(systemName: "camera.circle.fill")
@@ -83,10 +84,11 @@ struct ContentView: View {
                     
                     
                 }
-                HStack {
+                HStack { // buttons in content view for ging back, saving, re-transcribing and speech
                     Spacer().frame(width: 1)
                     
                     FloatingActionButton(icon: "arrow.left", label: "Back", color: .black.opacity(0.7)) {
+                        print("Back button pressed in ContentView")
                         dismiss()
                     }
                     
@@ -97,6 +99,7 @@ struct ContentView: View {
                         label: "re-transcribe",
                         color: .black.opacity(0.7)
                     ) {
+                        print("re-transcribe button pressed in ContentView")
                         if let image = inputImage {
                             transcriptionService.recognizeText(from: image)
                         }
@@ -107,10 +110,11 @@ struct ContentView: View {
                     
                     Spacer()
                     FloatingActionButton(
-                        icon: speechSynthesizer.isSpeaking ? "speaker.slash" : "speaker.wave.2",
+                                                icon: speechSynthesizer.isSpeaking ? "speaker.slash" : "speaker.wave.2",
                         label: speechSynthesizer.isSpeaking ? "Stop" : "Speak",
                         color: .black.opacity(0.7)
                     ) {
+                        print("Speech button pressed in ContentView")
                         speechSynthesizer.toggleSpeech(text: recognizedText)
                     }
                     
@@ -118,10 +122,12 @@ struct ContentView: View {
                     Spacer()
                     
                     FloatingActionButton(
+                        
                         icon: "square.and.arrow.down",
                         label: "save",
                         color: .black.opacity(0.7)
                     ) {
+                        print("Save button pressed in ContentView")
                         // Show an alert with save options
                         let alert = UIAlertController(
                             title: "Save Options",
@@ -130,18 +136,24 @@ struct ContentView: View {
                         )
                         
                         alert.addAction(UIAlertAction(title: "Save in App", style: .default) { _ in
+                            print("Save to in App button pressed in ContentView")
                             showSaveDialog = true
                         })
                         
                         alert.addAction(UIAlertAction(title: "Save to Google Keep", style: .default) { _ in
+                            print("Save to Google Keep button pressed in ContentView")
                             GoogleKeepService.saveToGoogleKeep(title: transcriptionTitle, text: recognizedText)
                         })
                         
                         alert.addAction(UIAlertAction(title: "Copy Only", style: .default) { _ in
+                            
+                                print("Copy Only button pressed in ContentView")
                                 UIPasteboard.general.string = recognizedText
                             })
                         
-                        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel){ _ in
+                            print("Cancel button pressed in ContentView")
+                        })
                         
                         // Present the alert
                         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
@@ -159,20 +171,6 @@ struct ContentView: View {
             
             .toolbar {
 
-                ToolbarItem(placement: .principal) {
-                    HStack {
-                        Text("Handwriting to Text")
-                            .font(.headline)
-                            .padding(.trailing, 40)
-                            
-                        Button(action: {
-                            transcriptionService.reset()
-                            transcriptionTitle = "Untitled"
-                        }) {
-                            Image(systemName: "arrow.clockwise")
-                        }
-                    }
-                }
             }
             .navigationBarBackButtonHidden(true)
 
@@ -191,11 +189,15 @@ struct ContentView: View {
                     
                     HStack {
                         Button("Cancel") {
+                            // cancel saving
+                            print("cancel save pressed in save alert in galleryview")
                             showSaveDialog = false
                         }
                         .padding()
                         
-                        Button("Save") {
+                        Button("Save") { // save transcription
+                            
+                            print("save pressed in save alert in galleryview")
                             saveTranscription()
                             showSaveDialog = false
                         }
@@ -211,7 +213,8 @@ struct ContentView: View {
 
         }
     }
-        
+    
+    // Save transcription in app with core data
     func saveTranscription() {
         
         let newTranscription = Transcription(context: viewContext)
@@ -228,6 +231,7 @@ struct ContentView: View {
     }
     
     
+    // request permission for photo library access
     func requestPhotoPermission() {
         PHPhotoLibrary.requestAuthorization { status in
             

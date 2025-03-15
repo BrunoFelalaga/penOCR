@@ -69,6 +69,7 @@ struct GalleryView: View, PhotoDeletable {
                     
                     // Photo import button from library
                     Button {
+                        print("image picker pressed in  Gallery view")
                         showingPhotoFromLibrary = true
                     } label: {
                         Image(systemName: "photo.on.rectangle.angled")
@@ -79,6 +80,7 @@ struct GalleryView: View, PhotoDeletable {
                     .photosPicker(isPresented: $showingPhotoFromLibrary, selection: $selectedPhotoItem)
                     .onChange(of: selectedPhotoItem) { newValue in
                         // Process selected photo and prepare for review
+                        print("selected photoitem changed in Galleryview")
                         Task {
                             if let photoItem = newValue,
                                let data = try? await photoItem.loadTransferable(type: Data.self),
@@ -119,6 +121,7 @@ struct GalleryView: View, PhotoDeletable {
                                                 
                                                 // View option in context menu
                                                 Button(action: {
+                                                    print("photo selected in Gallerview")
                                                     selectedPhoto = photo
                                                     showPhotoDetail = true
                                                 }) {
@@ -127,6 +130,7 @@ struct GalleryView: View, PhotoDeletable {
                                                 
                                                 // Delete option in context menu
                                                 Button(role: .destructive, action: {
+                                                    print("photo deeleted in galleryview")
                                                     photoToDelete = photo
                                                     showDeleteConfirmation = true
                                                 }) {
@@ -135,6 +139,7 @@ struct GalleryView: View, PhotoDeletable {
                                             }
                                             // Handle tap to view full image
                                             .onTapGesture {
+                                                print("photo tapped for full image in galleryview")
                                                 if let imageData = photo.imageData,
                                                    let uiImage = UIImage(data: imageData),
                                                    let cgImage = uiImage.cgImage {
@@ -159,11 +164,13 @@ struct GalleryView: View, PhotoDeletable {
                 .alert("Delete Photo", isPresented: $showDeleteConfirmation) {
                     // Cancel button dismisses dialog without action
                     Button("Cancel", role: .cancel) {
+                        print("Cancel delete pressed in gallereyview")
                         photoToDelete = nil
                     }
                     
                     // Delete button removes photo from persistent storage
                     Button("Delete", role: .destructive) {
+                        print("photo deleted in Galleryview")
                         if let photo = photoToDelete {
                             deletePhoto(photo, from: viewContext)
                             

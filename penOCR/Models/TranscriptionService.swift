@@ -21,7 +21,8 @@ class TranscriptionService: ObservableObject {
             return
         }
 
-
+        print("Starting text recognition on image")
+        
         // Create a new Vision image-request handler
         let requestHandler = VNImageRequestHandler(cgImage: cgImage, options: [:])
 
@@ -48,6 +49,8 @@ class TranscriptionService: ObservableObject {
             DispatchQueue.main.async {
                 self?.recognizedText = recognizedTextLocal
                 self?.isRecognizing = false
+                print("Text recognized successfully: \(recognizedTextLocal.prefix(100))...")
+
             }
         }
 
@@ -63,7 +66,8 @@ class TranscriptionService: ObservableObject {
                 self.isRecognizing = false
             }
         }
-
+        
+        
     }
 
     

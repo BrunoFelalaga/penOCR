@@ -84,10 +84,13 @@ class GoogleKeepService {
 
     // Opens Google Keep website in default browser. Tries short URL first, then falls back to main Keep URL
     private static func openKeepWebsite() {
+        
         // Try direct note creation URL first
         if let keepNewURL = URL(string: "https://keep.new") {
+            print("Opening Google Keep URL: \(keepNewURL.absoluteString)") // logging
             UIApplication.shared.open(keepNewURL, options: [:]) { success in
                 if !success, let keepURL = URL(string: "https://keep.google.com") {
+                    print("Fallback to main Keep URL: \(keepURL.absoluteString)")
                     UIApplication.shared.open(keepURL, options: [:], completionHandler: nil)
                 }
             }

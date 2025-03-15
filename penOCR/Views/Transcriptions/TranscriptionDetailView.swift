@@ -131,6 +131,7 @@ struct TranscriptionDetailView: View {
                                         
                                         // Share option for external export
                                         Button {
+                                            print("share pressed in transcription detail view")
                                             shareAttachment(attachment)
                                         } label: {
                                             Label("Share", systemImage: "square.and.arrow.up")
@@ -152,11 +153,13 @@ struct TranscriptionDetailView: View {
             // Toggle between Edit and Save based on editing state
             if isEditing {
                 Button("Save") { // Save button
+                    print("save pressed in transcription detail view")
                     saveChanges()
                     isEditing = false
                 }
             } else {
                 Button("Edit") { // Edit button
+                    print("edit pressed in transcription detail view")
                     isEditing = true
                 }
             }
@@ -166,6 +169,7 @@ struct TranscriptionDetailView: View {
             
             // Sharing button for external export
             Button {
+                print("share transcription pressed in transcription detail view")
                 shareTranscription()
             } label: {
                 Image(systemName: "square.and.arrow.up")
@@ -176,8 +180,10 @@ struct TranscriptionDetailView: View {
             
             // Text-to-speech toggle with dynamic icon
             Button {
+                print("toggle speech pressed in transcription detail view")
                 speechSynthesizer.toggleSpeech(text: transcription.text ?? "")
             } label: {
+                
                 Image(systemName: speechSynthesizer.isSpeaking ? "speaker.slash" : "speaker.wave.2")
             }
         }
@@ -187,12 +193,14 @@ struct TranscriptionDetailView: View {
             // Attachment menu with options for different content types
             Menu {
                 Button {
+                    print("image picker pressed in transcription detail view")
                     showImagePicker = true
                 } label: {
                     Label("Add Image", systemImage: "photo")
                 }
                 
                 Button {
+                    print("file picker pressed in transcription detail view")
                     showFilePicker = true
                 } label: {
                     Label("Add Document", systemImage: "doc")

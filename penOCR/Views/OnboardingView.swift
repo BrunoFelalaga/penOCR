@@ -131,7 +131,7 @@ struct FinalOnboardingPage: View {
                 withAnimation {
                     showOnboarding = false
                 }
-                
+                print("onboarding complete")
                 // Save completion status to prevent showing again
                 UserDefaults.standard.set(true, forKey: "onboardingComplete")
             }) {

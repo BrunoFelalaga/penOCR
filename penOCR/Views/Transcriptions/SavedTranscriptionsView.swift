@@ -95,6 +95,9 @@ struct SavedTranscriptionsView: View {
                     }
                 }
                 .searchable(text: $searchText, prompt: "Search transcriptions") // Search functionality for filtering transcriptions
+                .onChange(of: searchText) { newValue in
+                    print("Searching transcriptions: \"\(newValue)\"")
+                }
                 .alert("Delete Transcription", isPresented: $showingDeleteAlert) { // Confirmation dialog for deleting transcriptions with safety warning
                     
                     // Cancel button to dismiss alert
@@ -136,12 +139,15 @@ struct SavedTranscriptionsView: View {
         }
     }
     
+    
     // Removes a transcription from CoreData and saves the context
     private func deleteTranscription(_ transcription: Transcription) {
+        print("Deleting transcription: \(transcription.title ?? "Untitled")")
         viewContext.delete(transcription) // Remove transcription from managed object context
         
         do {
             try viewContext.save() // Persist changes to storage
+            print("Transcription deleted successfully")
         } catch {
             print("Error deleting transcription: \(error)")
         }
@@ -169,7 +175,7 @@ struct SavedTranscriptionsView: View {
     
     // Toggles date sort order and applies the new sort descriptor
     private func sortTranscriptionsByDate() {
-        
+        print("Sorting transcriptions by date: \(dateSortAscending ? "ascending" : "descending")")
         dateSortAscending.toggle() // Switch between ascending/descending
         let descriptor = NSSortDescriptor(
             keyPath: \Transcription.createdAt,
@@ -182,6 +188,7 @@ struct SavedTranscriptionsView: View {
 
     // Toggles title sort order and applies the new sort descriptor
     private func sortTranscriptionsByTitle() {
+        print("Sorting transcriptions by title: \(titleSortAscending ? "ascending" : "descending")")
         titleSortAscending.toggle() // Switch between ascending/descending
         let descriptor = NSSortDescriptor(
             keyPath: \Transcription.title,

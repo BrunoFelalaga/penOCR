@@ -40,6 +40,9 @@ struct MainView: View {
 
                 .tag(2)
         }
+        .onChange(of: selectedTab) { newValue in
+            print("Tab changed to: \(newValue)")
+        }
     }
     
     // Navigation helper to programmatically switch to gallery tab

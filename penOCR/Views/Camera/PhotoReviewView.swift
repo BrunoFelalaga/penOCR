@@ -47,6 +47,7 @@ struct PhotoReviewView: View {
                         
                         // Button: Returns to camera view discarding current image
                         FloatingActionButton(icon: "arrow.uturn.backward", label: "Retake", color: .black.opacity(0.7)) {
+                            print("Retake button pressed in PhotoReviewView")
                             onBack()
                         }
                         
@@ -54,6 +55,7 @@ struct PhotoReviewView: View {
                         
                         // Button: Opens image cropping interface
                         FloatingActionButton(icon: "crop", label: "Crop", color: .black.opacity(0.7)) {
+                            print("Crop button pressed in PhotoReviewView")
                             showImageCropper()
                         }
                         
@@ -61,6 +63,7 @@ struct PhotoReviewView: View {
                         
                         // Button: Initiates OCR text recognition process
                         FloatingActionButton(icon: "text.bubble", label: "Transcribe", color: .black.opacity(0.7)) {
+                            print("Transcribe button pressed in PhotoReviewView")
                             isTranscribing = true
                             // Short delay to show processing indicator before navigation
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
@@ -74,6 +77,7 @@ struct PhotoReviewView: View {
                         
                         // Button: Saves image to CoreData storage
                         FloatingActionButton(icon: "square.and.arrow.down", label: "Save", color: .black.opacity(0.7)) {
+                            print("Save button pressed in PhotoReviewView")
                             savePhoto()
                             onSave()
                         }
@@ -148,8 +152,10 @@ struct PhotoReviewView: View {
         
         // Save to CoreData and refresh context
         do {
+            print("Saving photo to CoreData with ID: \(newPhoto.id?.uuidString ?? "unknown")")
             try viewContext.save()
             print("Photo saved successfully")
+            print("Photo created at: \(newPhoto.createdAt?.description ?? "unknown date")")
             viewContext.refreshAllObjects()
         } catch {
             print("Error saving: \(error)")

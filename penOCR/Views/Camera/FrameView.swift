@@ -46,6 +46,7 @@ struct FrameView: View {
                     .contentShape(Rectangle())
                     // Enable tap to focus on specific areas of frame
                     .onTapGesture { location in
+                        print("Focus point set at: \(location)")
                         onFocusTap?(location, geometry.size)
                    
                     }

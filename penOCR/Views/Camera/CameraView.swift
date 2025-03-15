@@ -62,6 +62,7 @@ struct CameraView: View {
                                .frame(width: 80)
                                .accentColor(.white)
                                .onChange(of: frameModel.brightnessValue) { newValue in
+                                   print("Brightness adjusted to: \(newValue)")
                                    frameModel.setBrightness(newValue)
                                }
                                .controlSize(.mini)  // Makes the slider smaller overall
@@ -75,6 +76,7 @@ struct CameraView: View {
                        
                        // Flash control button
                        Button(action: {
+                           print("Flash toggle pressed: \(frameModel.torchActive ? "off" : "on")")
                            frameModel.toggleTorch() // Toggle camera flash/torch
                        }) { // Flash image
                            Image(systemName: frameModel.torchActive ? "bolt.fill" : "bolt.slash")
@@ -92,6 +94,8 @@ struct CameraView: View {
                    
                    // Camera capture button
                    Button(action: {
+                       print("Capture button pressed, initiating photo capture")
+                       
                        #if targetEnvironment(simulator)
                        showPhotoReview = true // Simulate photo capture in simulator
                        #else
