@@ -1,6 +1,17 @@
 import SwiftUI
 import CoreData
 
+class AppDelegate: NSObject, UIApplicationDelegate { // Only here to set launchscreen to purple fo smooth transition from launch
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        // Set window background color
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let window = windowScene.windows.first {
+            window.backgroundColor = .purple // to set launchscreen to purple fo smooth transition from launch
+        }
+        return true
+    }
+}
+
 
 @main
 struct penOCR: App {
@@ -49,6 +60,9 @@ struct penOCR: App {
                     OnboardingView(showOnboarding: $showOnboarding)
                         .transition(.move(edge: .bottom))
                 }
+                
+                
+                
             }.onAppear {
                 checkAndIncrementLaunchCount()
                 

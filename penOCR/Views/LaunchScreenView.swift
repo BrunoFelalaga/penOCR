@@ -32,10 +32,23 @@ struct LaunchScreenView: View {
                 Text("penOCR")
                     .font(.largeTitle)
                     .fontWeight(.bold)
+                    .foregroundColor(.white) 
                 
+                Spacer()
+                
+                Text("Bruno Felalaga")
+                    .font(.headline)
+                    .foregroundColor(.white.opacity(0.9))
+                                
                 Spacer()
             }
         }
     }
 }
 
+
+struct LaunchScreenView_Previews: PreviewProvider {
+    static var previews: some View {
+        LaunchScreenView()
+    }
+}

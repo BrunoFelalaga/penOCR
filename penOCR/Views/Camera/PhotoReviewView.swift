@@ -16,8 +16,9 @@ struct PhotoReviewView: View {
     @State private var isCropping = false
     @State private var croppedImage: UIImage?
     
-    @Environment(\.managedObjectContext) private var viewContext  // CoreData context for saving images
     
+    @Environment(\.managedObjectContext) private var viewContext  // CoreData context for saving images
+
     var body: some View {
         // Main navigation container
         NavigationView {
@@ -46,7 +47,9 @@ struct PhotoReviewView: View {
                         Spacer()
                         
                         // Button: Returns to camera view discarding current image
-                        FloatingActionButton(icon: "arrow.uturn.backward", label: "Retake", color: .black.opacity(0.7)) {
+                        FloatingActionButton(icon: "arrow.left",
+                                             label: "back",
+                                             color: .black.opacity(0.7)) {
                             print("Retake button pressed in PhotoReviewView")
                             onBack()
                         }
