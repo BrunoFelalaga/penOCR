@@ -99,10 +99,12 @@ The app implements a thoughtful Core Data architecture with entities for:
 # Overview
 <!--![Camera View](penOCR/screen shots/camera view.jpeg)-->
 ![Camera View](screen%20shots/camera%20view.jpeg)
+
 CameraView of the note to be be captured
 
 <!--![PhotoReview View](penOCR/screen shots/photo review view.jpeg)-->
 ![PhotoReview View](screen%20shots/photo%20review%20view.jpeg)
+
 PhotoReviewView gives you these options for reviewing the captured image:
 - crop it, 
 - proceed to transcribe it, 
@@ -112,6 +114,7 @@ PhotoReviewView gives you these options for reviewing the captured image:
 
 <!--![Transcription View](penOCR/screen shots/transcription review.jpeg)-->
 ![Transcription View](screen%20shots/transcription%20review.jpeg)
+
 The transcription is presented with options to 
 - re-transcribe if you’re not satisfied with the quality, 
 - get a speech service so you can quickly listen without having to read everything, and 
@@ -121,6 +124,7 @@ The transcription is presented with options to
 
 <!--![Saving Options](penOCR/screen shots/save options.jpeg)-->
 ![Saving Options](screen%20shots/save%20options.jpeg)
+
 Saving gives options to 
 - save it in the app, 
 - export to Google Keep, or 
@@ -128,6 +132,7 @@ Saving gives options to
 
 <!--![Camera View](penOCR/screen shots/saved transcriptions.jpeg)-->
 ![Saved Transcriptions](screen%20shots/saved%20transcriptions.jpeg)
+
 With your transcriptions saved in the app, you can return anytime to 
 - edit it, 
 - get speech service, 
