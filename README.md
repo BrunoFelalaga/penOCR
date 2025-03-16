@@ -96,15 +96,16 @@ The app implements a thoughtful Core Data architecture with entities for:
 4. Build and run:
    - Select
 
-# Overview
-<!--![Camera View](penOCR/screen shots/camera view.jpeg)-->
-## Camera View
+# Previews
+
+
+*Camera View*
 
 ![Camera View](screen%20shots/camera%20view.jpeg)
 
 CameraView of the note to be be captured
 
-<!--![PhotoReview View](penOCR/screen shots/photo review view.jpeg)-->
+
 ## PhotoReview View
 ![PhotoReview View](screen%20shots/photo%20review%20view.jpeg)
 
@@ -115,7 +116,6 @@ PhotoReviewView gives you these options for reviewing the captured image:
 - return to camera to re-take it.
 
 
-<!--![Transcription View](penOCR/screen shots/transcription review.jpeg)-->
 ## Transcription View
 
 ![Transcription View](screen%20shots/transcription%20review.jpeg)
@@ -127,7 +127,6 @@ The transcription is presented with options to
 - you can also return to the PhotoReview page to edit the image for better transcription. 
 
 
-<!--![Saving Options](penOCR/screen shots/save options.jpeg)-->
 ## Saving Options
 
 ![Saving Options](screen%20shots/save%20options.jpeg)
