@@ -1,5 +1,4 @@
-
-# penOCR: Handwriting Recognition & Management App
+# penOCR: Handwriting Digitization & Note Taking Management App
 
 ## Overview
 penOCR is a comprehensive iOS application designed for transcribing your handwritten notes and captured images with text into digital text using the iOS Vision Framework. The app provides a seamless workflow from image capture to organization, with strong text processing abilities and multiple options for managing and storing your transcriptions. penOCR is built with SwiftUI and leverages Core Data for persistent storage. The app offers a modern, efficient solution for taking notes by hand or capturing images with text, converting them into digital form and integrating them with other digital notes and documents. penOCR literally brings your 4th Century BC notes taking style to live!
@@ -61,17 +60,81 @@ The app implements a thoughtful Core Data architecture with entities for:
 - **TranscriptionDetailView**: Detailed view and editing capabilities for saved content
 - **PhotoReviewView**: Post-capture image review and adjustment
 
-## Requirements & Dependencies
-- iOS 14.0 or later
-- Swift 5.5+
-- Xcode 13+
-- Camera and photo library permissions required
-- CoreData capabilities
+
+
 
 ## Setup Notes
 - Camera and photo library permissions must be configured in Info.plist
 - Core Data model initialization occurs at application launch
 - Default persistent store is configured in PersistenceController
+
+### Requirements & Dependencies
+- iOS 16.0 or later
+- Swift 5.5+
+- Xcode 13+
+- Camera and photo library permissions required
+- CoreData capabilities
+- Active Apple Developer account (for testing on physical devices)
+
+
+### Installation
+1. Clone the repository:
+   ```
+   git clone https://github.com/uchicago-mobi/mpcs51030-2025-winter-final-project-BrunoFelalaga/tree/main
+   cd ./penOCR
+   ```
+
+2. Open the project in Xcode:
+   ```
+   open penOCR.xcodeproj
+   ```
+
+3. Configure permissions:
+   - Ensure camera permissions are set in Info.plist
+   - Ensure photo library permissions are set in Info.plist
+
+4. Build and run:
+   - Select
+
+# Overview
+<!--![Camera View](penOCR/screen shots/camera view.jpeg)-->
+![Camera View](screen%20shots/camera%20view.jpeg)
+CameraView of the note to be be captured
+
+<!--![PhotoReview View](penOCR/screen shots/photo review view.jpeg)-->
+![PhotoReview View](screen%20shots/photo%20review%20view.jpeg)
+PhotoReviewView gives you these options for reviewing the captured image:
+- crop it, 
+- proceed to transcribe it, 
+- save it in your in-App photo Gallery or 
+- return to camera to re-take it.
+
+
+<!--![Transcription View](penOCR/screen shots/transcription review.jpeg)-->
+![Transcription View](screen%20shots/transcription%20review.jpeg)
+The transcription is presented with options to 
+- re-transcribe if you’re not satisfied with the quality, 
+- get a speech service so you can quickly listen without having to read everything, and 
+- you can save it to your in-App saved transcriptions. 
+- you can also return to the PhotoReview page to edit the image for better transcription. 
+
+
+<!--![Saving Options](penOCR/screen shots/save options.jpeg)-->
+![Saving Options](screen%20shots/save%20options.jpeg)
+Saving gives options to 
+- save it in the app, 
+- export to Google Keep, or 
+- copy to clipboard to paste in a desired location.
+
+<!--![Camera View](penOCR/screen shots/saved transcriptions.jpeg)-->
+![Saved Transcriptions](screen%20shots/saved%20transcriptions.jpeg)
+With your transcriptions saved in the app, you can return anytime to 
+- edit it, 
+- get speech service, 
+- share it with friends and family,
+- attach other related documents including images, and documents( pdfs, .txt, .doc, .docx, .xlx files etc). 
+You can have all your notes right here in the same space!
+
 
 
 ## Further Improvements
