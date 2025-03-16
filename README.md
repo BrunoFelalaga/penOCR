@@ -130,7 +130,8 @@ PhotoReviewView gives you these options for reviewing the captured image:
 
 ### Transcription View
 
-![Transcription View](screen%20shots/transcription%20review.png)
+<!--![Transcription View](screen%20shots/transcription%20review.png)-->
+<img src="screen%20shots/transcription%20review.png" width="300" height="650" alt="Transcription View">
 
 The transcription is presented with options to 
 - re-transcribe if you’re not satisfied with the quality, 
