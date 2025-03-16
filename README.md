@@ -145,7 +145,7 @@ The transcription is presented with options to
 ### Saving Options
 
 <!--![Saving Options](screen%20shots/save%20options.png)-->
-<img src="screen%20shots/photo%20review%20view.jpeg" width="350" height="650" alt="PhotoReview View">
+<img src="screen%20shots/save%20options.png" width="350" height="650" alt="Saving Options">
 
 Saving gives options to 
 - save it in the app, 
@@ -157,7 +157,7 @@ Saving gives options to
 ### Saved Transcriptions
 
 <!--![Saved Transcriptions](screen%20shots/transcription%20detail%20view.png)-->
-<img src="screen%20shots/photo%20review%20view.jpeg" width="350" height="650" alt="PhotoReview View">
+<img src="screen%20shots/transcription%20detail%20view.png" width="350" height="650" alt="Saved Transcriptions">
 
 With your transcriptions saved in the app, you can return anytime to 
 - edit it, 
