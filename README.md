@@ -96,7 +96,7 @@ The app implements a thoughtful Core Data architecture with entities for:
 4. Build and run:
    - Select
 
-# Previews
+# Summary of Previews
 
 
 *Camera View*
@@ -106,7 +106,7 @@ The app implements a thoughtful Core Data architecture with entities for:
 CameraView of the note to be be captured
 
 
-**PhotoReview View**
+*PhotoReview View*
 ![PhotoReview View](screen%20shots/photo%20review%20view.jpeg)
 
 PhotoReviewView gives you these options for reviewing the captured image:
@@ -116,7 +116,7 @@ PhotoReviewView gives you these options for reviewing the captured image:
 - return to camera to re-take it.
 
 
-***Transcription View***
+*Transcription View*
 
 ![Transcription View](screen%20shots/transcription%20review.jpeg)
 
@@ -127,7 +127,7 @@ The transcription is presented with options to
 - you can also return to the PhotoReview page to edit the image for better transcription. 
 
 
-## Saving Options
+*Saving Options*
 
 ![Saving Options](screen%20shots/save%20options.jpeg)
 
@@ -136,8 +136,7 @@ Saving gives options to
 - export to Google Keep, or 
 - copy to clipboard to paste in a desired location.
 
-<!--![Camera View](penOCR/screen shots/saved transcriptions.jpeg)-->
-## Saved Transcriptions
+*Saved Transcriptions*
 
 ![Saved Transcriptions](screen%20shots/saved%20transcriptions.jpeg)
 
@@ -151,9 +150,11 @@ You can have all your notes right here in the same space!
 
 
 ## Further Improvements
+- Add more export options beyond Google Keep
 - Fix the double 'back' buttons in ContentView. 
     - Application designed to keep floating 'back' button instead of the navigation 'back' button
-- Inlcude speech to text transcription for an even more seamless note-taking and record keeping
+- Inlcude speech-to-text transcription to accomodate speech for note-taking. 
+    - This would give a more seamless and well integrated note-taking and documenting experience
 - Organize transition betweeen views more efficiently and smoothly
 - Include options for user to control styles and themes
 - Improve cropping, zooming  and focus features
