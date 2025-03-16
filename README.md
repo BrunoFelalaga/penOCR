@@ -130,7 +130,7 @@ PhotoReviewView gives you these options for reviewing the captured image:
 
 ### Transcription View
 
-![Transcription View](screen%20shots/transcription%20review.jpeg)
+![Transcription View](screen%20shots/transcription%20review.png)
 
 The transcription is presented with options to 
 - re-transcribe if you’re not satisfied with the quality, 
@@ -143,7 +143,7 @@ The transcription is presented with options to
 
 ### Saving Options
 
-![Saving Options](screen%20shots/save%20options.jpeg)
+![Saving Options](screen%20shots/save%20options.png)
 
 Saving gives options to 
 - save it in the app, 
@@ -154,7 +154,7 @@ Saving gives options to
 
 ### Saved Transcriptions
 
-![Saved Transcriptions](screen%20shots/transcription%20detail%20view.jpeg)
+![Saved Transcriptions](screen%20shots/transcription%20detail%20view.png)
 
 With your transcriptions saved in the app, you can return anytime to 
 - edit it, 
