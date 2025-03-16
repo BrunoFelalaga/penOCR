@@ -3,6 +3,8 @@
 ## Overview
 penOCR is a comprehensive iOS application designed for transcribing your handwritten notes and captured images with text into digital text using the iOS Vision Framework. The app provides a seamless workflow from image capture to organization, with strong text processing abilities and multiple options for managing and storing your transcriptions. penOCR is built with SwiftUI and leverages Core Data for persistent storage. The app offers a modern, efficient solution for taking notes by hand or capturing images with text, converting them into digital form and integrating them with other digital notes and documents. penOCR literally brings your 4th Century BC notes taking style to live!
 
+
+
 ## Key Features
 
 ### Camera & Image Processing
@@ -31,6 +33,8 @@ penOCR is a comprehensive iOS application designed for transcribing your handwri
 - **Google Keep Export**: Direct integration with Google Keep for cloud storage
 - **Universal Sharing**: Share via text, email, or any app using iOS share sheet
 - **Clipboard Support**: Quick copy option for immediate use in other applications
+
+
 
 ## Technical Architecture
 
@@ -98,6 +102,7 @@ The app implements a thoughtful Core Data architecture with entities for:
 
 
 
+
 ## Summary of Previews
 
 
@@ -106,6 +111,8 @@ The app implements a thoughtful Core Data architecture with entities for:
 ![Camera View](screen%20shots/camera%20view.jpeg)
 
 CameraView of the note to be be captured
+
+
 
 
 ### PhotoReview View
@@ -119,6 +126,8 @@ PhotoReviewView gives you these options for reviewing the captured image:
 - return to camera to re-take it.
 
 
+
+
 ### Transcription View
 
 ![Transcription View](screen%20shots/transcription%20review.jpeg)
@@ -130,6 +139,8 @@ The transcription is presented with options to
 - you can also return to the PhotoReview page to edit the image for better transcription. 
 
 
+
+
 ### Saving Options
 
 ![Saving Options](screen%20shots/save%20options.jpeg)
@@ -138,6 +149,8 @@ Saving gives options to
 - save it in the app, 
 - export to Google Keep, or 
 - copy to clipboard to paste in a desired location.
+
+
 
 ### Saved Transcriptions
 
@@ -149,6 +162,9 @@ With your transcriptions saved in the app, you can return anytime to
 - share it with friends and family,
 - attach other related documents including images, and documents( pdfs, .txt, .doc, .docx, .xlx files etc). 
 You can have all your notes right here in the same space!
+
+
+
 
 
 
