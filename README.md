@@ -154,7 +154,7 @@ Saving gives options to
 
 ### Saved Transcriptions
 
-![Saved Transcriptions](screen%20shots/saved%20transcriptions.jpeg)
+![Saved Transcriptions](screen%20shots/transcription%20detail%20view.jpeg)
 
 With your transcriptions saved in the app, you can return anytime to 
 - edit it, 
