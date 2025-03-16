@@ -96,17 +96,20 @@ The app implements a thoughtful Core Data architecture with entities for:
 4. Build and run:
    - Select
 
-# Summary of Previews
 
 
-*Camera View*
+## Summary of Previews
+
+
+### Camera View
 
 ![Camera View](screen%20shots/camera%20view.jpeg)
 
 CameraView of the note to be be captured
 
 
-*PhotoReview View*
+### PhotoReview View
+
 ![PhotoReview View](screen%20shots/photo%20review%20view.jpeg)
 
 PhotoReviewView gives you these options for reviewing the captured image:
@@ -116,7 +119,7 @@ PhotoReviewView gives you these options for reviewing the captured image:
 - return to camera to re-take it.
 
 
-*Transcription View*
+### Transcription View
 
 ![Transcription View](screen%20shots/transcription%20review.jpeg)
 
@@ -127,7 +130,7 @@ The transcription is presented with options to
 - you can also return to the PhotoReview page to edit the image for better transcription. 
 
 
-*Saving Options*
+### Saving Options
 
 ![Saving Options](screen%20shots/save%20options.jpeg)
 
@@ -136,7 +139,7 @@ Saving gives options to
 - export to Google Keep, or 
 - copy to clipboard to paste in a desired location.
 
-*Saved Transcriptions*
+### Saved Transcriptions
 
 ![Saved Transcriptions](screen%20shots/saved%20transcriptions.jpeg)
 
