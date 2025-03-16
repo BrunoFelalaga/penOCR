@@ -72,7 +72,7 @@ struct penOCR: App {
             }
             .alert("Enjoying penOCR? Help us with a rating", isPresented: $shouldShowRatingAlert) {
                 Button("Rate Now") {
-                    // This should take the user to the App Store page for app
+                    // This should take the user to the App Store page
                     if let url = URL(string: "https://apps.apple.com/app/id000000000") {
                         UIApplication.shared.open(url)
                     }

@@ -47,7 +47,7 @@ struct TranscriptionDetailView: View {
             }
             .padding()
         }
-        .navigationTitle(isEditing ? "Editing Transcription" : "Transcription Details")
+        .navigationTitle(isEditing ? "Editing" : "Transcription")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar { toolbarContent } // Custom toolbar with action buttons
         .photosPicker(isPresented: $showImagePicker, selection: $selectedImageItem, matching: .images)
