@@ -106,7 +106,7 @@ The app implements a thoughtful Core Data architecture with entities for:
 CameraView of the note to be be captured
 
 
-## PhotoReview View
+**PhotoReview View**
 ![PhotoReview View](screen%20shots/photo%20review%20view.jpeg)
 
 PhotoReviewView gives you these options for reviewing the captured image:
@@ -116,7 +116,7 @@ PhotoReviewView gives you these options for reviewing the captured image:
 - return to camera to re-take it.
 
 
-## Transcription View
+***Transcription View***
 
 ![Transcription View](screen%20shots/transcription%20review.jpeg)
 
