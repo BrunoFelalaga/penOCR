@@ -188,3 +188,10 @@ You can have all your notes right here in the same space!
     Vision also gives accuracy by lines and they mostly come as confidence values of 1.0
     - Highlight transcriptions of confidencee lower than 0.5 so user attention is drawn to those for immediate edition/correction
     - Incorporate a feature that learns user's handwritting as the saved gallery of handwritting images grows. This will help with even higher accuracy of transcription tailored to the user's handwriting.
+
+
+
+## License & Usage
+
+This project is shared for academic and demonstration purposes only. All rights are reserved by the author.  
+Please do not reproduce or reuse any part of this repository for commercial or derivative work without written permission.
